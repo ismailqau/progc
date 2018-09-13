@@ -14,7 +14,6 @@
 #include <string.h>
 #include "main.h"
 
-#define MAXLEN 5
 #define S_(x) #x
 #define S(x) S_(x)
 
