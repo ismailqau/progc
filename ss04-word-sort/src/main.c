@@ -14,6 +14,10 @@
 #include <string.h>
 #include "main.h"
 
+#define MAXLEN 5
+#define S_(x) #x
+#define S(x) S_(x)
+
 const char END_WORD[] = "ZZZ";
 
 // @brief compares two string based on their ASCII Value.
@@ -54,7 +58,7 @@ int readWords(char* words[MAX_WORD_COUNT], int *wordCount)
     char* newWord;
     do {
         (void) strcpy(word, END_WORD); // reset
-        (void) scanf("%s", word);
+        (void) scanf("%" S(MAX_WORD_SIZE) "s", word);
         int len = strlen(word);
         if (len >= 0 && strcmp(END_WORD, word) != 0) {
             newWord = (char *) malloc(len * sizeof(char));

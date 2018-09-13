@@ -29,7 +29,7 @@ typedef struct {
 void readMinPoints(int *minPoints)
 {
     (void) printf("How many points are needed for mark 6? ");
-    scanf("%d", minPoints);
+    scanf("%5d", minPoints);
     (void) printf("\n");
 }
 
@@ -40,7 +40,7 @@ int readPoints(int points[MAX_POINTS_SIZE], int *pointsLen)
     int point;
     do {
         point = -2; // reset point so it fails when no number is entered.
-        (void) scanf("%d", &point);
+        (void) scanf("%5d", &point);
         if (point >= 0) {
             points[i] = point;
             i += 1;
@@ -143,7 +143,7 @@ int main(void)
             (void) printStats(minPoints, pointsLen, stats);
 
             (void) printf("Try out another metric? (Yes=1 / No=0) \n");
-            scanf("%d", &repeat);
+            scanf("%1d", &repeat);
         } while(repeat);
 
         return EXIT_SUCCESS;
