@@ -18,6 +18,7 @@
 
 #define MAX_WORD_COUNT 100
 #define MAX_WORD_SIZE 20
+#define MAX_WORD_SCAN_SIZE 19
 
 int compare(const void * a, const void * b);
 

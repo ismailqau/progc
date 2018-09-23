@@ -57,7 +57,7 @@ int readWords(char* words[MAX_WORD_COUNT], int *wordCount)
     char* newWord;
     do {
         (void) strcpy(word, END_WORD); // reset
-        (void) scanf("%" S(MAX_WORD_SIZE) "s", word);
+        (void) scanf("%" S(MAX_WORD_SCAN_SIZE)"s", word);
         int len = strlen(word);
         if (len >= 0 && strcmp(END_WORD, word) != 0) {
             newWord = (char *) malloc(len * sizeof(char));
