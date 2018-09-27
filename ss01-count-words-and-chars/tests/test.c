@@ -41,22 +41,20 @@ static void test_count_words(void)
 {
 	// arrange
 	// act
-  char s[] = "werewr rewqrw rewqr";
+	char s[] = "werewr rewqrw rewqr";
 	int d = countWords(s);
 	// assert
 	CU_ASSERT_DOUBLE_EQUAL(d, 3, EPSILON);
 }
 
-int maxi(int i1, int i2)
+static void test_count_words_empty(void)
 {
-  return (i1 > i2) ? i1 : i2;
-}
-
-void test_maxi(void)
-{
-  CU_ASSERT(maxi(0,2) == 2);
-  CU_ASSERT(maxi(0,-2) == 0);
-  CU_ASSERT(maxi(2,2) == 2);
+	// arrange
+	// act
+	char s[] = "";
+	int d = countWords(s);
+	// assert
+	CU_ASSERT_DOUBLE_EQUAL(d, 0, EPSILON);
 }
 
 /**
@@ -65,7 +63,8 @@ void test_maxi(void)
 int main(void)
 {
 	// setup, run, teardown
-	TestMainBasic("Hello World", setup, teardown,
-    test_count_words
-  );
+	TestMainBasic("Test word count", setup, teardown,
+		test_count_words,
+		test_count_words_empty
+	);
 }
