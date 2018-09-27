@@ -11,27 +11,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "countWords.h"
 
 #define MAX_STRING_SIZE 256
 
-int countWords(char *str)
+char* readAndParseInput(char *text)
 {
-    char *part;
-    int count = 0;
-    char delimiters[] = " \t\n";
-
-    part = strtok(str, delimiters);
-    while (part != NULL) {
-        count++;
-        //pass NULL because strtok saved a pointer to the string internally
-        part = strtok(NULL, delimiters);
-    }
-    return count;
-}
-
-char* readAndParseInput()
-{
-    char *text = malloc(MAX_STRING_SIZE);
     fgets(text, MAX_STRING_SIZE, stdin);
     if ((strlen(text) > 0) && (text[strlen (text) - 1] == '\n'))
         text[strlen (text) - 1] = '\0';
@@ -49,7 +34,7 @@ int main(void)
     int charCount = 0;
     char *text = malloc(MAX_STRING_SIZE);
 
-    text = readAndParseInput();
+    text = readAndParseInput(text);
 
     charCount = strlen(text);
 
