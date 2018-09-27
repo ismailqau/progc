@@ -8,18 +8,18 @@
  * @file
  * @brief Prints the amount of words and characters of the user input
  */
+#include "countWords.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "countWords.h"
 
 #define MAX_STRING_SIZE 256
 
-char* readAndParseInput(char *text)
+char *readAndParseInput(char *text)
 {
     fgets(text, MAX_STRING_SIZE, stdin);
-    if ((strlen(text) > 0) && (text[strlen (text) - 1] == '\n'))
-        text[strlen (text) - 1] = '\0';
+    if ((strlen(text) > 0) && (text[strlen(text) - 1] == '\n'))
+        text[strlen(text) - 1] = '\0';
 
     return text;
 }
@@ -40,8 +40,8 @@ int main(void)
 
     wordCount = countWords(text);
 
-    (void) printf("Anzahl Zeichen:\t%3d\n", charCount);
-    (void) printf("Anzahl Wörter:\t%3d\n", wordCount);
+    (void)printf("Anzahl Zeichen:\t%3d\n", charCount);
+    (void)printf("Anzahl Wörter:\t%3d\n", wordCount);
 
     return EXIT_SUCCESS;
 }

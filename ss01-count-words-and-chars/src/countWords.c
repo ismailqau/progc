@@ -1,7 +1,7 @@
+#include "countWords.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "countWords.h"
 
 int countWords(char *str)
 {
@@ -12,7 +12,7 @@ int countWords(char *str)
     part = strtok(str, delimiters);
     while (part != NULL) {
         count++;
-        //pass NULL because strtok saved a pointer to the string internally
+        // pass NULL because strtok saved a pointer to the string internally
         part = strtok(NULL, delimiters);
     }
     return count;
