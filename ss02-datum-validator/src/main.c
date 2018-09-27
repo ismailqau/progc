@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
+#include "nextDate.h"
 
 #define MAX_STRING_SIZE 10 + 1
 
@@ -24,18 +24,6 @@ char* readInput() {
     if ((strlen(text) > 0) && (text[strlen(text) - 1] == '\n'))
         text[strlen(text) - 1] = '\0';
     return text;
-}
-
-struct tm getNextDayDate(struct tm date)
-{
-    date.tm_mday += 1;
-    mktime(&date);
-    return date;
-}
-
-void printNextDay(struct tm date)
-{
-    printf("Next Day:\t\t\t%02d.%02d.%d\n", date.tm_mday, date.tm_mon+1, date.tm_year+1900);
 }
 
 /**
