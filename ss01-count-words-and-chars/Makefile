@@ -20,16 +20,24 @@ TSTOBJECTS    := $(TSTSOURCES:%.c=%.o) # list of gcc -c  ... produced *.o files
 TSTDEPS       := $(TSTSOURCES:%.c=%.d) # list of gcc -MD ... produced *.d files
 TSTTARGET     := $(CURDIR)/tests/runtest
 
-default: build run
+doc:
+	doxygen ../../Doxyfile > /dev/null
+	@echo "#### $@ done ####"
 
-build: ./src/main.c
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJECTS)
+default: $(FULLTARGET)
+	$(MAKE) run
+	@echo "#### $< built ####"
 
 run:
-	./src/main
+	$(TARGET)
 
 $(FULLTARGET): mkdir $(OBJECTS) Makefile
 	$(LINK.c) -o $@ $(OBJECTS)
+
+clean:
+	$(RM) $(TARGET) $(OBJECTS) $(DEPS) $(TSTTARGET) $(TSTOBJECTS) $(TSTDEPS) $(wildcard */*~ *~ tests/*.txt)
+	$(RM) -r $(CREATEDIRS)
+	@echo "#### $@ done ####"
 
 test: $(TSTTARGET)
 	(cd tests; $(TSTTARGET))
