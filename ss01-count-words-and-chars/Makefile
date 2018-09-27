@@ -1,17 +1,43 @@
 CC      = gcc
 CFLAGS  = -g
-RM      = rm -f
+TARGET := bin/countWords
 
+# directories to create (and remove upon cleanup)
+CREATEDIRS    := bin doc
 
-default: main run
+# full path to the target
+FULLTARGET    := $(CURDIR)/$(TARGET)
 
-all: main
+SOURCES       := src/main.c src/countWords.c
 
-main: ./src/main.c
-	$(CC) $(CFLAGS) -o ./src/main ./src/main.c
+CUNITLIBDIR   := $(CURDIR)/../../CUnit/lib
+TSTLIBDIR     := $(CURDIR)/../../lib
+
+TSTSOURCES    := tests/test.c
+
+OBJECTS       := $(SOURCES:%.c=%.o)
+TSTOBJECTS    := $(TSTSOURCES:%.c=%.o) # list of gcc -c  ... produced *.o files
+TSTDEPS       := $(TSTSOURCES:%.c=%.d) # list of gcc -MD ... produced *.d files
+TSTTARGET     := $(CURDIR)/tests/runtest
+
+default: build run
+
+build: ./src/main.c
+	$(CC) $(CFLAGS) -o $(TARGET) $(OBJECTS)
 
 run:
 	./src/main
 
-clean veryclean:
-	$(RM) ./src/main
+$(FULLTARGET): mkdir $(OBJECTS) Makefile
+	$(LINK.c) -o $@ $(OBJECTS)
+
+test: $(TSTTARGET)
+	(cd tests; $(TSTTARGET))
+	@echo "#### $< executed ####"
+
+$(TSTTARGET): $(FULLTARGET) $(TSTOBJECTS)
+	gcc -o $(TSTTARGET) tests/test.c src/countWords.c -L$(CUNITLIBDIR) -lcunit -L$(TSTLIBDIR) -lprogctest
+	@echo "#### $@ built ####"
+
+mkdir:
+	-mkdir -p $(CREATEDIRS)
