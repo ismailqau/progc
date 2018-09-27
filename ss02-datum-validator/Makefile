@@ -31,7 +31,7 @@ $(FULLTARGET): mkdir $(OBJECTS) Makefile
 	$(LINK.c) -o $@ $(OBJECTS)
 
 doc:
-	doxygen ../../Doxyfile > /dev/null
+	doxygen ../Doxyfile > /dev/null
 	@echo "#### $@ done ####"
 
 clean:
