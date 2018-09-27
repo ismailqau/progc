@@ -21,7 +21,7 @@ TSTDEPS       := $(TSTSOURCES:%.c=%.d) # list of gcc -MD ... produced *.d files
 TSTTARGET     := $(CURDIR)/tests/runtest
 
 doc:
-	doxygen ../../Doxyfile > /dev/null
+	doxygen ../Doxyfile > /dev/null
 	@echo "#### $@ done ####"
 
 default: $(FULLTARGET)
