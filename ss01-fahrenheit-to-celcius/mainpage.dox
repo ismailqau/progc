@@ -1,0 +1,24 @@
+/**
+ * @mainpage PROGC - Labs
+ *
+ * @section Purpose
+ *
+ * This is a PROGC "Selbststudium".
+ *
+ * @section Description
+ *
+ * This module prints a table of converted values (from fahrenheit to celcius)
+ * it can be passed various options, including the lower and the upper limit as well as the step size.
+ * for more detailed information please refer to the documentation of the main module.
+ *
+ * Run the lab by:
+ *
+ * @code
+ * make clean; make; make doc; make test
+ * @endcode
+ *
+ * The executable program is located in the bin folder or can be run by:
+ * @code
+ * make run
+ * @endcode
+ */
