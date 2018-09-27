@@ -32,13 +32,14 @@ int main(void)
 {
     int wordCount = 0;
     int charCount = 0;
-    char *text = malloc(MAX_STRING_SIZE);
+    char *text = (char *)malloc(MAX_STRING_SIZE);
 
-    text = readAndParseInput(text);
-
-    charCount = strlen(text);
-
-    wordCount = countWords(text);
+    if (text != NULL)
+    {
+        text = readAndParseInput(text);
+        charCount = strlen(text);
+        wordCount = countWords(text);
+    }
 
     (void)printf("Anzahl Zeichen:\t%3d\n", charCount);
     (void)printf("Anzahl Wörter:\t%3d\n", wordCount);
